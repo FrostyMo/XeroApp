@@ -1,0 +1,39 @@
+﻿@using Xero.NetStandard.OAuth2.Model.Accounting
+@model List<Invoice>
+
+@{
+    ViewData["Title"] = "Invoices";
+}
+
+<h1>Invoices</h1>
+
+@if (Model?.Count > 0)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Invoice Number</th>
+                <th>Date</th>
+                <th>Due Date</th>
+                <th>Status</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var invoice in Model)
+            {
+                <tr>
+                    <td>@invoice.InvoiceNumber</td>
+                    <td>@invoice.Date?.ToString("dd MMM yyyy")</td>
+                    <td>@invoice.DueDate?.ToString("dd MMM yyyy")</td>
+                    <td>@invoice.Status</td>
+                    <td>@invoice.Total</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No invoices found.</p>
+}
